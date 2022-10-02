@@ -3,10 +3,10 @@ import json
 from datetime import date, timedelta
 
 # Api key:
-API_KEY = 'rXHy4U4L2Jzt7nJiVMsWpSBKH6J2FJIojHjkEhJR'
+API_KEY = 'SsDY2Ocy4NU36Y6HoV6JFSOsvYiFLKkRbVapFTsA'
 
 # Api url:
-API_URL = 'https://api.nasa.gov/DONKI/FLR?'
+API_URL = 'https://api.nasa.gov/DONKI/RBE?'
 
 
 def read_api():
@@ -22,12 +22,9 @@ def read_api():
         'endDate': today, # Set endDate to today
         'api_key': API_KEY
     }
-    txt_response = 'upstream connect error or disconnect/reset before headers. retried and the latest reset reason: connection failure, transport failure reason: delayed connect error: 111'
-    while txt_response == 'upstream connect error or disconnect/reset before headers. retried and the latest reset reason: connection failure, transport failure reason: delayed connect error: 111':
-        # Make the request
-        response = requests.get(API_URL, params = parameters)
-        txt_response = response.text
-        #print("Response:" + txt_response)
+    
+    # Make the request
+    response = requests.get(API_URL, params = parameters)
 
     # Make it a readable dictionary or list of dictionaries
     json_data = json.loads(response.text)
@@ -37,3 +34,4 @@ def read_api():
         return [json_data[-1]['beginTime'], json_data[-1]['peakTime'], json_data[-1]['endTime'], json_data[-1]['classType']]
 
     else: return [json_data['beginTime'], json_data['peakTime'], json_data['endTime'], json_data['classType']]
+    

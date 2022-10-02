@@ -4,7 +4,7 @@ from datetime import date
 
 def creating_text_video():
     # Load the black background video
-    background_video = VideoFileClip('Untitled.mp4').subclip(10, 47)
+    background_video = VideoFileClip('Untitled.mp4').subclip(0, 40)
     
     # Get the latest info for solar flare
     latest_event = read_api()
@@ -28,7 +28,7 @@ def creating_text_video():
                     video_lines.append(line + latest_event[index])
                 
     # Make a list of the text clips
-    t = 0
+    t = 4
     txt_clips = []
     
     for line in video_lines:

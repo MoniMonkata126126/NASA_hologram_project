@@ -10,6 +10,8 @@ def make_pyramid_video():
     
     # Load main animation
     original_clip = VideoFileClip('text_video.mp4')
+    
+    original_clip = original_clip.fx(vfx.mirror_y)
 
     # Make a vertical top copy with right size
     vertical_top_clip = original_clip.rotate(180).set_position('top').resize(0.3).margin(top = 90)
